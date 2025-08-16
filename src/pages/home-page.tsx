@@ -157,19 +157,19 @@ export default function HomePage() {
             {
               name: "Masculino",
               description: "Estilo e sofisticação para o homem moderno",
-              img: `/placeholder.svg?height=600&width=500&query=homem+elegante+minimalista`,
+              img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop&crop=center",
               link: "/products/masculino",
             },
             {
               name: "Feminino",
               description: "Elegância e feminilidade em cada detalhe",
-              img: `/placeholder.svg?height=600&width=500&query=mulher+elegante+minimalista`,
+              img: "https://images.unsplash.com/photo-1494790108755-2616c9c0e8e0?w=500&h=600&fit=crop&crop=center",
               link: "/products/feminino",
             },
             {
               name: "Acessórios",
               description: "Detalhes que fazem toda a diferença",
-              img: `/placeholder.svg?height=600&width=500&query=acessorios+finos+minimalistas`,
+              img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=600&fit=crop&crop=center",
               link: "/products/acessorios",
             },
           ].map((category) => (

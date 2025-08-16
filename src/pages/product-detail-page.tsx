@@ -1,3 +1,5 @@
+"use client";
+
 import { useParams, Link } from "react-router";
 import { mockProducts } from "@/data/mock-products";
 import { Button } from "@/components/ui/button";
@@ -50,8 +52,8 @@ export default function ProductDetailPage() {
     );
   }
 
-  // Mock de múltiplas imagens
-  const productImages = [
+  // Usar as imagens do produto ou fallback para a imagem principal
+  const productImages = product.images || [
     product.imageUrl || "/placeholder.svg?height=600&width=500",
     "/placeholder.svg?height=600&width=500",
     "/placeholder.svg?height=600&width=500",
@@ -68,13 +70,6 @@ export default function ProductDetailPage() {
       size: selectedSize,
     });
   };
-
-  const features = [
-    "Material premium de alta qualidade",
-    "Acabamento impecável",
-    "Design atemporal",
-    "Conforto excepcional",
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -380,7 +375,14 @@ export default function ProductDetailPage() {
                       Principais Características
                     </h4>
                     <ul className="space-y-3">
-                      {features.map((feature, index) => (
+                      {(
+                        product.features || [
+                          "Material premium de alta qualidade",
+                          "Acabamento impecável",
+                          "Design atemporal",
+                          "Conforto excepcional",
+                        ]
+                      ).map((feature, index) => (
                         <li key={index} className="flex items-center gap-3">
                           <Check className="h-5 w-5 text-primary" />
                           <span>{feature}</span>
@@ -393,7 +395,9 @@ export default function ProductDetailPage() {
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Material:</span>
-                        <span>100% Algodão Premium</span>
+                        <span>
+                          {product.materials?.[0] || "Material Premium"}
+                        </span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Origem:</span>
@@ -415,11 +419,17 @@ export default function ProductDetailPage() {
                   Instruções de Cuidado
                 </h3>
                 <div className="space-y-4">
-                  <p>• Lavar à máquina em água fria (máx. 30°C)</p>
-                  <p>• Não usar alvejante</p>
-                  <p>• Secar à sombra</p>
-                  <p>• Passar em temperatura baixa</p>
-                  <p>• Não lavar a seco</p>
+                  {(
+                    product.careInstructions || [
+                      "Lavar à máquina em água fria (máx. 30°C)",
+                      "Não usar alvejante",
+                      "Secar à sombra",
+                      "Passar em temperatura baixa",
+                      "Não lavar a seco",
+                    ]
+                  ).map((instruction, index) => (
+                    <p key={index}>• {instruction}</p>
+                  ))}
                 </div>
               </div>
             </TabsContent>
